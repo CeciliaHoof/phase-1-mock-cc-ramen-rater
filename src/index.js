@@ -1,9 +1,13 @@
 // write your code here
-/* instructions:
-1) 
-2) 
-3) create a new ramen using the new ramen-form, will diplay in #ramen-menu
-duv but does not need to persist*/
+/* advanced:
+1)
+2) Update the rating and comment for a ramen by submitting a form.
+Changes should be reflected on the frontend. No need to persist.
+You can add this HTML to the index.html file to create the edit form:
+3) Delete a ramen (you can add a "delete" button if you'd like,
+or use an existing element to handle the delete action).
+The ramen should be removed from the ramen-menu div, and 
+should not be displayed in the ramen-detail div. No need to persist.*/
 
 fetch('http://localhost:3000/ramens')
     .then(resp => resp.json())
@@ -14,6 +18,8 @@ const ramenMenuDiv = document.querySelector('#ramen-menu')
 const detailImg = document.querySelector('.detail-image')
 const detailName = document.querySelector('.name')
 const detailRestaurant = document.querySelector('.restaurant')
+const detailRating = document.querySelector('#rating-display')
+const detailComment = document.querySelector('#comment-display')
 const ramenForm = document.querySelector('#new-ramen')
 //console.log(ramenForm)
 
@@ -22,6 +28,8 @@ function addFirstRamen(ramenArr){
     detailImg.src = ramenObj.image;
     detailName.textContent = ramenObj.name;
     detailRestaurant.textContent = ramenObj.restaurant;
+    detailRating.textContent = ramenObj.rating;
+    detailComment.textContent = ramenObj.comment;
 }
 
 function addRamen(ramenArr){
@@ -33,6 +41,8 @@ function addRamen(ramenArr){
             detailImg.src = ramen.image;
             detailName.textContent = ramen.name;
             detailRestaurant.textContent = ramen.restaurant;
+            detailRating.textContent = ramen.rating;
+            detailComment.textContent = ramen.comment;
         })
     })
 }
@@ -42,10 +52,14 @@ ramenForm.addEventListener('submit', function(event) {
     const newName = event.target.name.value;
     const newRestaurent = event.target.restaurant.value;
     const newImg = event.target.image.value;
+    const newRating = event.target.rating.value;
+    const newComment = document.querySelector('#new-comment').value
     const newRamenObj = {
         name : newName,
         restaurant : newRestaurent,
         image : newImg,
+        rating : newRating,
+        comment : newComment
     }
     let newRamenImg = document.createElement('img');
     newRamenImg.src = newRamenObj.image;
@@ -54,5 +68,7 @@ ramenForm.addEventListener('submit', function(event) {
         detailImg.src = newRamenObj.image;
         detailName.textContent = newRamenObj.name;
         detailRestaurant.textContent = newRamenObj.restaurant;
+        detailRating.textContent = newRamenObj.rating;
+        detailComment.textContent = newRamenObj.comment;
     })
 })
