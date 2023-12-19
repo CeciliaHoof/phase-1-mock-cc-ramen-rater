@@ -13,6 +13,8 @@ const ramenMenuDiv = document.querySelector('#ramen-menu')
 const detailImg = document.querySelector('.detail-image')
 const detailName = document.querySelector('.name')
 const detailRestaurant = document.querySelector('.restaurant')
+const ramenForm = document.querySelector('#new-ramen')
+//console.log(ramenForm)
 
 function addRamen(ramenArr){
     ramenArr.forEach(ramen => {
@@ -26,3 +28,23 @@ function addRamen(ramenArr){
         })
     })
 }
+
+ramenForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const newName = event.target.name.value;
+    const newRestaurent = event.target.restaurant.value;
+    const newImg = event.target.image.value;
+    const newRamenObj = {
+        name : newName,
+        restaurant : newRestaurent,
+        image : newImg,
+    }
+    let newRamenImg = document.createElement('img');
+    newRamenImg.src = newRamenObj.image;
+    ramenMenuDiv.appendChild(newRamenImg);
+    newRamenImg.addEventListener('click', () => {
+        detailImg.src = newRamenObj.image;
+        detailName.textContent = newRamenObj.name;
+        detailRestaurant.textContent = newRamenObj.restaurant;
+    })
+})
