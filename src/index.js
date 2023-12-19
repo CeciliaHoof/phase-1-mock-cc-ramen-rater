@@ -21,7 +21,7 @@ const detailRestaurant = document.querySelector('.restaurant')
 const detailRating = document.querySelector('#rating-display')
 const detailComment = document.querySelector('#comment-display')
 const ramenForm = document.querySelector('#new-ramen')
-//console.log(ramenForm)
+const editForm = document.querySelector('#edit-ramen')
 
 function addFirstRamen(ramenArr){
     let ramenObj = ramenArr[0];
@@ -71,4 +71,12 @@ ramenForm.addEventListener('submit', function(event) {
         detailRating.textContent = newRamenObj.rating;
         detailComment.textContent = newRamenObj.comment;
     })
+})
+
+editForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const editRating = e.target.rating.value;
+    const editComment = document.querySelector("#new-comment").value;
+    detailRating.textContent = editRating;
+    detailComment.textContent = editComment;
 })
