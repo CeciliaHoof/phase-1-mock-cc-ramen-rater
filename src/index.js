@@ -76,7 +76,7 @@ ramenForm.addEventListener('submit', function(event) {
 editForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const editRating = e.target.rating.value;
-    const editComment = document.querySelector("#new-comment").value;
+    const editComment = document.querySelector("#edit-comment").value;
     detailRating.textContent = editRating;
     detailComment.textContent = editComment;
 })
