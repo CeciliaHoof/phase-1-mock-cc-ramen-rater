@@ -7,7 +7,8 @@ duv but does not need to persist*/
 
 fetch('http://localhost:3000/ramens')
     .then(resp => resp.json())
-    .then(data => addRamen(data))
+    .then(data => {addRamen(data)
+        addFirstRamen(data)})
 
 const ramenMenuDiv = document.querySelector('#ramen-menu')
 const detailImg = document.querySelector('.detail-image')
@@ -15,6 +16,13 @@ const detailName = document.querySelector('.name')
 const detailRestaurant = document.querySelector('.restaurant')
 const ramenForm = document.querySelector('#new-ramen')
 //console.log(ramenForm)
+
+function addFirstRamen(ramenArr){
+    let ramenObj = ramenArr[0];
+    detailImg.src = ramenObj.image;
+    detailName.textContent = ramenObj.name;
+    detailRestaurant.textContent = ramenObj.restaurant;
+}
 
 function addRamen(ramenArr){
     ramenArr.forEach(ramen => {
